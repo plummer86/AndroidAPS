@@ -17,7 +17,8 @@ fun therapyEventFromNsMbg(mbg: NSMbg) =
         type = TherapyEvent.Type.FINGER_STICK_BG_VALUE, //convert Mbg to finger stick because is coming from "entries" collection
         timestamp = mbg.date,
         glucose = mbg.mbg,
-        glucoseUnit = TherapyEvent.GlucoseUnit.MGDL
+        glucoseUnit = TherapyEvent.GlucoseUnit.MGDL,
+        glucoseType = TherapyEvent.MeterType.FINGER
     )
 
 fun TherapyEvent.Companion.fromJson(jsonObject: JSONObject): TherapyEvent? {

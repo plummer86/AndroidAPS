@@ -65,7 +65,7 @@ fun TemporaryTarget.toJson(isAdd: Boolean, dateUtil: DateUtil, profileUtil: Prof
             if (lowTarget > 0) it
                 .put("reason", reason.text)
                 .put("targetBottom", profileUtil.fromMgdlToUnits(lowTarget))
-                .put("targetTop", profileUtil.fromMgdlToUnits(highTarget))
+                .put("targetTop", profileUtil.fromMgdlToUnits(highTarget ?: lowTarget))
                 .put("units", profileUtil.units.asText)
             if (isAdd && interfaceIDs.nightscoutId != null) it.put("_id", interfaceIDs.nightscoutId)
         }

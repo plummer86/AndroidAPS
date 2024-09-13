@@ -317,7 +317,7 @@ class StoreDataForDbImpl @Inject constructor(
                                 values = listOf(
                                     ValueWithUnit.TherapyEventTTReason(tt.reason),
                                     ValueWithUnit.fromGlucoseUnit(tt.lowTarget, GlucoseUnit.MGDL.asText),
-                                    ValueWithUnit.fromGlucoseUnit(tt.highTarget, GlucoseUnit.MGDL.asText).takeIf { tt.lowTarget != tt.highTarget },
+                                    ValueWithUnit.fromGlucoseUnit(tt.highTarget ?: tt.lowTarget, GlucoseUnit.MGDL.asText),
                                     ValueWithUnit.Minute(TimeUnit.MILLISECONDS.toMinutes(tt.duration).toInt())
                                 )
                             )

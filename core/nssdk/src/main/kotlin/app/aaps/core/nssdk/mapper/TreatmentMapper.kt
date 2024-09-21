@@ -102,14 +102,13 @@ internal fun RemoteTreatment.toTreatment(): NSTreatment? {
                     endId = this.endId,
                     pumpType = this.pumpType,
                     pumpSerial = this.pumpSerial,
-                    duration = 0,
+                    duration = 0L,
                     targetBottom = 0.0,
                     targetTop = 0.0,
                     reason = NSTemporaryTarget.Reason.CUSTOM
                 )
 
             this.targetBottom ?: return null
-            this.targetTop ?: return null
 
             return NSTemporaryTarget(
                 date = treatmentTimestamp,
@@ -130,7 +129,7 @@ internal fun RemoteTreatment.toTreatment(): NSTreatment? {
                 pumpSerial = this.pumpSerial,
                 duration = durationInMilliseconds,
                 targetBottom = this.targetBottom,
-                targetTop = this.targetTop,
+                targetTop = this.targetTop ?: this.targetBottom,
                 reason = NSTemporaryTarget.Reason.fromString(this.reason)
             )
         }

@@ -19,7 +19,7 @@ fun NSTherapyEvent.toTherapyEvent(): TherapyEvent =
         enteredBy = enteredBy,
         glucose = glucose,
         glucoseType = glucoseType.toMeterType(),
-        duration = duration,
+        duration = duration ?: 0L,
         interfaceIDs_backing = InterfaceIDs(nightscoutId = identifier, pumpId = pumpId, pumpType = InterfaceIDs.PumpType.fromString(pumpType), pumpSerial = pumpSerial, endId = endId)
     )
 

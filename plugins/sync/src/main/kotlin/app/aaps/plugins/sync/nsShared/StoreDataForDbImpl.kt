@@ -353,7 +353,7 @@ class StoreDataForDbImpl @Inject constructor(
                                 values = listOf(
                                     ValueWithUnit.TherapyEventTTReason(tt.reason),
                                     ValueWithUnit.Mgdl(tt.lowTarget),
-                                    ValueWithUnit.Mgdl(tt.highTarget).takeIf { tt.lowTarget != tt.highTarget },
+                                    ValueWithUnit.Mgdl(tt.highTarget ?: tt.lowTarget).takeIf { tt.lowTarget != tt.highTarget },
                                     ValueWithUnit.Minute(TimeUnit.MILLISECONDS.toMinutes(tt.duration).toInt())
                                 )
                             )
@@ -587,7 +587,7 @@ class StoreDataForDbImpl @Inject constructor(
                                 action = action,
                                 source = UserEntry.Sources.NSClient,
                                 note = therapyEvent.note ?: "",
-                                values = listOf(
+                                values = listOfNotNull(
                                     ValueWithUnit.Timestamp(therapyEvent.timestamp),
                                     ValueWithUnit.TherapyEventType(therapyEvent.type),
                                     ValueWithUnit.fromGlucoseUnit(therapyEvent.glucose ?: 0.0, therapyEvent.glucoseUnit.toString).takeIf { therapyEvent.glucose != null })
@@ -603,7 +603,7 @@ class StoreDataForDbImpl @Inject constructor(
                                 action = UserEntry.Action.CAREPORTAL_REMOVED,
                                 source = UserEntry.Sources.NSClient,
                                 note = therapyEvent.note ?: "",
-                                values = listOf(
+                                values = listOfNotNull(
                                     ValueWithUnit.Timestamp(therapyEvent.timestamp),
                                     ValueWithUnit.TherapyEventType(therapyEvent.type),
                                     ValueWithUnit.fromGlucoseUnit(therapyEvent.glucose ?: 0.0, therapyEvent.glucoseUnit.toString).takeIf { therapyEvent.glucose != null })
